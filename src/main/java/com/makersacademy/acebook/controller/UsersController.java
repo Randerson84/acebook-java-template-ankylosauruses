@@ -26,6 +26,10 @@ public class UsersController {
         return "users/new";
     }
 
+    @GetMapping("/terms")
+    public String terms(Model model) {
+        return "/terms";
+    }
     @PostMapping("/users")
     public RedirectView signup(@ModelAttribute User user) {
         userRepository.save(user);

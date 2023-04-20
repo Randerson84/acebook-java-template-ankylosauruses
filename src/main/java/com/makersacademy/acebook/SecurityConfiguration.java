@@ -32,6 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // Added in stuff below to specify a login page.
                 .loginPage("/login")
                 .failureUrl("/login-error")
+                .defaultSuccessUrl("/posts")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login");
