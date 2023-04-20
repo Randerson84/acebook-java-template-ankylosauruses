@@ -13,4 +13,4 @@ WORKDIR /app
 #COPY src ./src
 
 #CMD ["mvn spring-boot:run"]
-CMD [ "./mvnw", "spring-boot:run" ]
+CMD [ "./mvnw", "spring-boot:run -e" ]
