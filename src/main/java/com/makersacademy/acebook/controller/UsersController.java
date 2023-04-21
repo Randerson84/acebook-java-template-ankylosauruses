@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 @Controller
 public class UsersController {
@@ -39,19 +40,6 @@ public class UsersController {
         return new RedirectView("/login");
     }
 
-//    @GetMapping("/{id}")
-//    public String profile(@PathVariable("id") String id){
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-//        System.out.println(id);
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-//        System.out.println();
-//        return "users/profile";
-//    }
     @GetMapping("/users/{id}")
     public String profile(@PathVariable("id") String id, Model model) {
         System.out.println();
