@@ -9,8 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class UsersController {
@@ -19,6 +23,7 @@ public class UsersController {
     UserRepository userRepository;
     @Autowired
     AuthoritiesRepository authoritiesRepository;
+    private String id;
 
     @GetMapping("/users/new")
     public String signup(Model model) {
@@ -32,5 +37,32 @@ public class UsersController {
         Authority authority = new Authority(user.getUsername(), "ROLE_USER");
         authoritiesRepository.save(authority);
         return new RedirectView("/login");
+    }
+
+//    @GetMapping("/{id}")
+//    public String profile(@PathVariable("id") String id){
+//        System.out.println();
+//        System.out.println();
+//        System.out.println();
+//        System.out.println();
+//        System.out.println(id);
+//        System.out.println();
+//        System.out.println();
+//        System.out.println();
+//        System.out.println();
+//        return "users/profile";
+//    }
+    @GetMapping("/users/{id}")
+    public String profile(@PathVariable("id") String id) {
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println(id);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        return "users/profile";
     }
 }

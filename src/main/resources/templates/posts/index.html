@@ -19,6 +19,14 @@
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
 
+    <form method="get" action="users/profile">
+        <br>
+        <input type="text" name="username">
+        </br>
+        <input type="submit">
+
+    </form>
+
     <ul th:each="post: ${posts}">
         <li th:text="${post.content}" />
     </ul>
