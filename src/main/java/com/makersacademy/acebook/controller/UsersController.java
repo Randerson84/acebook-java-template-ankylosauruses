@@ -53,7 +53,7 @@ public class UsersController {
 //        return "users/profile";
 //    }
     @GetMapping("/users/{id}")
-    public String profile(@PathVariable("id") String id) {
+    public String profile(@PathVariable("id") String id, Model model) {
         System.out.println();
         System.out.println();
         System.out.println();
@@ -63,6 +63,7 @@ public class UsersController {
         System.out.println();
         System.out.println();
         System.out.println();
+        model.addAttribute("username", id);
         return "users/profile";
     }
 }
