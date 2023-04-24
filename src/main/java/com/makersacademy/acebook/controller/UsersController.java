@@ -1,9 +1,12 @@
 package com.makersacademy.acebook.controller;
 
 import com.makersacademy.acebook.model.Authority;
+import com.makersacademy.acebook.model.Post;
 import com.makersacademy.acebook.model.User;
 import com.makersacademy.acebook.repository.AuthoritiesRepository;
+import com.makersacademy.acebook.repository.PostRepository;
 import com.makersacademy.acebook.repository.UserRepository;
+import org.flywaydb.core.internal.util.TimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +18,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Controller
 public class UsersController {
@@ -24,6 +29,9 @@ public class UsersController {
     UserRepository userRepository;
     @Autowired
     AuthoritiesRepository authoritiesRepository;
+
+    @Autowired
+    PostRepository repository;
     private String id;
 
     @GetMapping("/users/new")
@@ -42,16 +50,17 @@ public class UsersController {
 
     @GetMapping("/users/{id}")
     public String profile(@PathVariable("id") String id, Model model) {
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println(id);
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        List<User> users = new ArrayList<User>();
+        userRepository.findAll().forEach(users::add);
+        User user = new User();
+        for (User e :users) {if (user.getUsername() != null && user.getUsername().equals(id)){user = e;}}
         model.addAttribute("username", id);
+        model.addAttribute("user", user);
+        Iterable<Post> posts = repository.findAllById(Collections.singleton(user.getId()));
+        List<Post> reverseOrderPost = StreamSupport.stream(posts.spliterator(), false)
+                .sorted(Comparator.comparing(Post::getId).reversed())
+                .collect(Collectors.toList());
+        model.addAttribute("posts", reverseOrderPost);
         return "users/profile";
     }
 }

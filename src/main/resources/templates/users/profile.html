@@ -8,5 +8,10 @@
 <p>profile page</p>
 
 <input type="label" id="stream" name="stream" th:value="${username}" />
+
+
+<ul th:each="post: ${posts}">
+    <li th:text="${post.content}" />
+</ul>
 </body>
 </html>
