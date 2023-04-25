@@ -1,10 +1,12 @@
 # syntax=docker/dockerfile:1
 
-FROM openjdk:18
+FROM openjdk:17
 
 COPY . /app
 
 WORKDIR /app
+
+EXPOSE 8080
 
 #COPY .mvn/ .mvn
 #COPY mvnw pom.xml ./
