@@ -27,8 +27,7 @@
     <h1>Posts</h1>
 
     <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
-<!--        <p>Content: <input type="text" th:field="*{content}" /></p>-->
-        <p>Create Posts: <textarea type="text" th:field="*{content}" /></p>
+        <p>Create Posts: <textarea type="text" th:field="*{content}" minlength="3"/></p>
 
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
