@@ -9,26 +9,35 @@
     <body>
 
     <div class="topnav">
-        <a href="/homepage">Home</a>
+<!--        <a href="/homepage">Home</a>-->
         <a class="active" href="/posts">Posts</a>
         <a href="/logout">Log Out</a>
+        <div sec:authorize="isAuthenticated()" style="text-align: right; padding: 5px; color: white; padding-top: 15px; padding-right: 30px;">
+            Signed in as <span sec:authentication="name"></span>
+        </div>
     </div>
 
     <br>
 
-    <h1>Posts</h1>
-
-    <div sec:authorize="isAuthenticated()" style="text-align: right; padding: 10px;">
-        Signed in as <span sec:authentication="name"></span>
+    <div class="imgcontainer1">
+        <h2>acebook</h2>
+        <img src="https://t4.ftcdn.net/jpg/02/79/66/93/360_F_279669366_Lk12QalYQKMczLEa4ySjhaLtx1M2u7e6.jpg" alt="Avatar1" class="avatar1">
     </div>
 
+    <h1>Posts</h1>
+
     <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
-        <p>Content: <input type="text" th:field="*{content}" /></p>
+<!--        <p>Content: <input type="text" th:field="*{content}" /></p>-->
+        <p>Create Posts: <textarea type="text" th:field="*{content}" /></p>
+
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
-    <ul th:each="post: ${posts}">
-        <li th:text="${post.content}"/>
-    </ul>
+
+    <div class="wrapper">
+        <ul th:each="post: ${posts}">
+            <li th:text="${post.content}" />
+        </ul>
+    </div>
 
     </body>
 </html>

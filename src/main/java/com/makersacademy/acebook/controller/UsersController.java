@@ -30,6 +30,12 @@ public class UsersController {
     public String terms(Model model) {
         return "/terms";
     }
+
+    @GetMapping("/forgotPassword")
+    public String forgotPassword(Model model) {
+        return "/forgotPassword";
+    }
+
     @PostMapping("/users")
     public RedirectView signup(@ModelAttribute User user) {
         userRepository.save(user);
