@@ -36,10 +36,16 @@ public class PostsTest {
 
     @Test
     public void MinLength() {
-        driver.get("http://localhost:8080/posts");
-        driver.findElement(By.id("username")).sendKeys("j");
-        driver.findElement(By.id("password")).sendKeys("pass");
+        String username = faker.internet().emailAddress();
+        driver.get("http://localhost:8080/users/new");
+        driver.findElement(By.id("username")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys("Password098!");
         driver.findElement(By.id("submit")).click();
+        driver.get("http://localhost:8080/login");
+        driver.findElement(By.id("username")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys("Password098!");
+        driver.findElement(By.id("submit")).click();
+        driver.get("http://localhost:8080/posts");
         driver.findElement(By.id("content")).sendKeys("123");
         driver.findElement(By.id("submit")).click();
         boolean postFound = false;
