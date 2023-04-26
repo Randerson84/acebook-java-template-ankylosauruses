@@ -29,6 +29,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.enabled = TRUE;
+        this.id = id;
     }
 
     public User(String username, String password, boolean enabled) {
@@ -41,4 +42,8 @@ public class User {
     public String getPassword() { return this.password; }
     public void setUsername(String username) { this.username = username; }
     public void setPassword(String password) { this.password = password; }
+    public void setId(long id){this.id = id;}
+    public long getId(){return id;}
+
+
 }

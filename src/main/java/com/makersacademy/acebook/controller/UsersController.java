@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -56,11 +57,10 @@ public class UsersController {
         for (User e :users) {if (user.getUsername() != null && user.getUsername().equals(id)){user = e;}}
         model.addAttribute("username", id);
         model.addAttribute("user", user);
-        Iterable<Post> posts = repository.findAllById(Collections.singleton(user.getId()));
-        List<Post> reverseOrderPost = StreamSupport.stream(posts.spliterator(), false)
-                .sorted(Comparator.comparing(Post::getId).reversed())
-                .collect(Collectors.toList());
-        model.addAttribute("posts", reverseOrderPost);
+        Iterable<Post> posts = repository.findAll();
+        ArrayList<Post> userPosts = new ArrayList<>();
+        for (Post post : posts){if (post.getUser_id() == Integer.valueOf(id)){userPosts.add(post);}}
+        model.addAttribute("posts", userPosts);
         return "users/profile";
     }
 }

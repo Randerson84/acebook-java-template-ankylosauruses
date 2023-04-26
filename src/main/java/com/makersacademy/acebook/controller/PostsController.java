@@ -1,7 +1,9 @@
 package com.makersacademy.acebook.controller;
 
 import com.makersacademy.acebook.model.Post;
+import com.makersacademy.acebook.model.User;
 import com.makersacademy.acebook.repository.PostRepository;
+import com.makersacademy.acebook.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,9 @@ public class PostsController {
     @Autowired
     PostRepository repository;
 
+    @Autowired
+    UserRepository userRepo;
+
     @GetMapping("/posts")
     public String index(Model model) {
         Iterable<Post> posts = repository.findAll();
@@ -30,7 +35,11 @@ public class PostsController {
     }
 
     @PostMapping("/posts")
-    public RedirectView create(@ModelAttribute Post post) {
+    public RedirectView create(@ModelAttribute Post post, @CookieValue("cuid") String uid) {
+        User user = new User();
+        for (User u: userRepo.findAll()){if (u.getUsername().equals(uid)){user = u;break;}}
+        System.out.println("\n\n\n\n\n\n"+uid+"\n\n\n\n\n\n\n\n\n");
+        post.setUID((int) user.getId());
         repository.save(post);
         return new RedirectView("/posts");
     }

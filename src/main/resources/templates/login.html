@@ -11,8 +11,14 @@
         <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
         <label for="password">Password</label>:
         <input type="password" id="password" name="password" /> <br />
-        <input type="submit" value="Log in" />
+
+        <input type="submit" value="Log in" onclick="setCookie(username.valueOf());"/>
     </form>
     <p th:if="${loginError}" class="error">Wrong user or password</p>
+
+<script>
+    function setCookie(username){document.cookie = "cuid="+ document.getElementById("username").value+";"};
+
+</script>
 </body>
 </html>
