@@ -23,6 +23,8 @@ public class User {
     private String password;
     private boolean enabled;
 
+    private String resetPasswordToken;
+
     public User() {
         this.enabled = TRUE;
     }

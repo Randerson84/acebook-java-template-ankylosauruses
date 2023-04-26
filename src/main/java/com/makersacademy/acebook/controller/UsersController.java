@@ -33,6 +33,7 @@ public class UsersController {
 
     @GetMapping("/forgotPassword")
     public String forgotPassword(Model model) {
+        model.addAttribute("user", new User());
         return "/forgotPassword";
     }
 
@@ -41,6 +42,13 @@ public class UsersController {
         userRepository.save(user);
         Authority authority = new Authority(user.getUsername(), "ROLE_USER");
         authoritiesRepository.save(authority);
+        return new RedirectView("/login");
+    }
+
+    @PostMapping("/users/forgot_password")
+    public RedirectView forgotPassword(@ModelAttribute User user) {
+        System.out.println("Test F pwd");
+        System.out.println(user.getUsername());
         return new RedirectView("/login");
     }
 }
