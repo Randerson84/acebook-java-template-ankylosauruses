@@ -39,8 +39,8 @@ public class LogoutTest {
         driver.findElement(By.id("password")).sendKeys("password");
         driver.findElement(By.id("submit")).click();
         driver.get("http://localhost:8080/logout");
-        driver.findElement(By.id("submit")).click();
+        driver.findElement(By.id("logout")).click();
         String title = driver.getTitle();
-        Assert.assertEquals("Please sign in", title);
+        Assert.assertEquals("Acebook Home Page", title);
     }
 }

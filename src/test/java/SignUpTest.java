@@ -35,7 +35,7 @@ public class SignUpTest {
     public void successfulSignUpRedirectsToSignIn() {
         driver.get("http://localhost:8080/users/new");
         driver.findElement(By.id("username")).sendKeys(faker.internet().emailAddress());
-        driver.findElement(By.id("password")).sendKeys("password");
+        driver.findElement(By.id("password")).sendKeys("Password098!");
         driver.findElement(By.id("submit")).click();
         String title = driver.getTitle();
         Assert.assertEquals("Please sign in", title);
