@@ -9,7 +9,19 @@ import org.springframework.ui.Model;
 public class HomeController {
 	@RequestMapping(value = "/")
 	public RedirectView index() {
+		return new RedirectView("/homepage"); }
+
+/*	public RedirectView index() {
 		return new RedirectView("/posts");
+	} */
+
+	@RequestMapping("/homepage")
+	public String home() {
+		return "homepage.html";
+	}
+	@RequestMapping(value = "/posts")
+	public String posts() {
+		return "index.html";
 	}
 	@RequestMapping("/login")
 	public String login() {

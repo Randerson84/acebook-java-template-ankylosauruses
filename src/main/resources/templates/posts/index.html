@@ -8,9 +8,17 @@
     </head>
     <body>
 
+    <div class="topnav">
+        <a href="/homepage">Home</a>
+        <a class="active" href="/posts">Posts</a>
+        <a href="/logout">Log Out</a>
+    </div>
+
+    <br>
+
     <h1>Posts</h1>
 
-    <div sec:authorize="isAuthenticated()">
+    <div sec:authorize="isAuthenticated()" style="text-align: right; padding: 10px;">
         Signed in as <span sec:authentication="name"></span>
     </div>
 
@@ -18,9 +26,8 @@
         <p>Content: <input type="text" th:field="*{content}" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
-
     <ul th:each="post: ${posts}">
-        <li th:text="${post.content}" />
+        <li th:text="${post.content}"/>
     </ul>
 
     </body>

@@ -6,9 +6,15 @@
     <link rel="stylesheet" href="/main.css" />
 </head>
 <body>
+<div class="topnav">
+    <a href="/homepage">Home</a>
+    <a href="/posts">Posts</a>
+    <a class="active" href="/logout">Log Out</a>
+</div>
+
     <h1>Logout page</h1>
     <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Logout" />
+        <input type="submit" id="submit" value="Logout" />
     </form>
 </body>
 </html>
