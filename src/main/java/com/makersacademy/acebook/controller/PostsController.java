@@ -38,8 +38,7 @@ public class PostsController {
     public RedirectView create(@ModelAttribute Post post, @CookieValue("cuid") String uid) {
         User user = new User();
         for (User u: userRepo.findAll()){if (u.getUsername().equals(uid)){user = u;break;}}
-        System.out.println("\n\n\n\n\n\n"+uid+"\n\n\n\n\n\n\n\n\n");
-        post.setUID((int) user.getId());
+        post.setUID(user.getId());
         repository.save(post);
         return new RedirectView("/posts");
     }

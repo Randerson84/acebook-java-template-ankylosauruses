@@ -9,9 +9,21 @@
 
 <input type="label" id="stream" name="stream" th:value="${username}" />
 
-
+<p>Posts</p>
 <ul th:each="post: ${posts}">
     <li th:text="${post.content}" />
 </ul>
+
+<p>Friends</p>
+<ul th:each="friend: ${friendsList}">
+    <li th:text="${friend.getUsername()}" />
+</ul>
+
+
+<p th:text="${profileString}"></p>
+
+<img th:src="${profileString}" alt="profile pic">
+
+
 </body>
 </html>

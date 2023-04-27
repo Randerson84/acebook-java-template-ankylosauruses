@@ -20,6 +20,8 @@ public class User {
     private String username;
     private String password;
     private boolean enabled;
+    private String friends_list;
+    private String profile_picture;
 
     public User() {
         this.enabled = TRUE;
@@ -30,6 +32,7 @@ public class User {
         this.password = password;
         this.enabled = TRUE;
         this.id = id;
+        this.friends_list = friends_list;
     }
 
     public User(String username, String password, boolean enabled) {
@@ -43,7 +46,16 @@ public class User {
     public void setUsername(String username) { this.username = username; }
     public void setPassword(String password) { this.password = password; }
     public void setId(long id){this.id = id;}
-    public long getId(){return id;}
 
+    public String getProfile_picture() {
+        return profile_picture;
+    }
 
+    public void setProfile_picture(String profile_picture) {
+        this.profile_picture = profile_picture;
+    }
+
+    public Long getId(){return id;}
+    public String getFriendsList() {return friends_list;}
+    public void setFriendsList(String friends_list) {this.friends_list = friends_list;}
 }

@@ -51,16 +51,33 @@ public class UsersController {
 
     @GetMapping("/users/{id}")
     public String profile(@PathVariable("id") String id, Model model) {
+        //separate posts/friends lists in to their own methods
+        //create user list and populate
         List<User> users = new ArrayList<User>();
         userRepository.findAll().forEach(users::add);
+        //create new user and populate by ID
         User user = new User();
-        for (User e :users) {if (user.getUsername() != null && user.getUsername().equals(id)){user = e;}}
+        for (User e :users) {
+                if (Long.toString(e.getId()).equals(id)){user = e;}}
+        //add attributes
         model.addAttribute("username", id);
         model.addAttribute("user", user);
+        //find all posts
         Iterable<Post> posts = repository.findAll();
+        //create list of user posts and populate
         ArrayList<Post> userPosts = new ArrayList<>();
-        for (Post post : posts){if (post.getUser_id() == Integer.valueOf(id)){userPosts.add(post);}}
+        for (Post post : posts){if (post.getUser_id().toString().equals(id)){userPosts.add(post);}}
+        //create friends arraylist of users
+        ArrayList<User> friendsList = new ArrayList<>();
+        //convert String friends list from user obj to list
+        String[] friends = null;
+        if(user.getFriendsList() != null){friends = user.getFriendsList().split(",");}
+            //for all users if their id is within friends list add them to friends array list
+            for (User u : userRepository.findAll()){if (Arrays.asList(friends).contains(u.getId().toString())){friendsList.add(u);}}
+        //add friends list and posts attributes
+        model.addAttribute("friendsList", friendsList);
         model.addAttribute("posts", userPosts);
+        model.addAttribute("profileString", "/main/resources/images/Homer.png");
         return "users/profile";
     }
 }
