@@ -59,7 +59,6 @@ h1 {
   align:center;
    }
 
-
 h2 {
   color: blue;
   text-align: left;
@@ -67,6 +66,14 @@ h2 {
     padding: 5px;
     margin: 5px;
    }
+
+h3 {
+ color: blue;
+ font-family: Luminari;
+ font-size: 3em;
+ padding: 5px;
+ margin: 5px;
+}
 
   p {
     color: black;
@@ -128,16 +135,13 @@ h2 {
       text-align: right;
       /*  float: top;
       padding: 20px 20px 20px 20px ; */
-      border: 5px solid yellow;
     }
         img.avatar1 {
         /* float: right; */
         width: 10%;
         height: 10%;
-
         border-radius: 20%;
         padding: 20px 20px 20px 20px ;
-              border: 5px solid yellow;
       }
 
 
@@ -151,9 +155,10 @@ h2 {
       padding-left: 40px;
     } */
 
-  .wrapper {
+ /* .wrapper {
         text-align: center;
         }
+
 
   .wrapper ul {
      list-style-type:none;
@@ -161,6 +166,7 @@ h2 {
      padding: 5;
      zoom:1;
            }
+ */
 
  .wrapper li {
     padding:0.25em 0.5em 0.25em 1em;
@@ -218,6 +224,18 @@ h2 {
         background-color: #fff; }
 
 
+/* Posts page - logo and img alignment: Create two equal columns that floats next to each other */
+.column1 {
+  float: left;
+  width: 50%;
+}
+
+/* Posts Page - logo and img alignment: Clear floats after the columns */
+.row1:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 
 
