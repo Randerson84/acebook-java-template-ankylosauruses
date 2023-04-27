@@ -71,13 +71,13 @@ public class UsersController {
         ArrayList<User> friendsList = new ArrayList<>();
         //convert String friends list from user obj to list
         String[] friends = null;
-        if(user.getFriendsList() != null){friends = user.getFriendsList().split(",");}
+        if(user.getFriendsList() != null){friends = user.getFriendsList().split(",");
             //for all users if their id is within friends list add them to friends array list
-            for (User u : userRepository.findAll()){if (Arrays.asList(friends).contains(u.getId().toString())){friendsList.add(u);}}
+            for (User u : userRepository.findAll()){if (Arrays.asList(friends).contains(u.getId().toString())){friendsList.add(u);}}}
         //add friends list and posts attributes
         model.addAttribute("friendsList", friendsList);
         model.addAttribute("posts", userPosts);
-        model.addAttribute("profileString", "/main/resources/images/Homer.png");
+        model.addAttribute("profileString", user.getProfile_picture());
         return "users/profile";
     }
 }
