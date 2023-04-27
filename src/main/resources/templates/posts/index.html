@@ -13,18 +13,29 @@
         <a class="active" href="/posts">Posts</a>
         <a href="/logout">Log Out</a>
         <div sec:authorize="isAuthenticated()" style="text-align: right; padding: 5px; color: white; padding-top: 15px; padding-right: 30px;">
-            Signed in as <span sec:authentication="name"></span>
+            Signed in as: <span sec:authentication="name"></span>
         </div>
     </div>
 
-    <br>
+<!--    <br>-->
 
-    <div class="imgcontainer1">
-        <h2>acebook</h2>
-        <img src="https://t4.ftcdn.net/jpg/02/79/66/93/360_F_279669366_Lk12QalYQKMczLEa4ySjhaLtx1M2u7e6.jpg" alt="Avatar1" class="avatar1">
+<!--    <div class="imgcontainer1">-->
+<!--        <h2>acebook</h2>-->
+<!--&lt;!&ndash;        <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="Avatar1" class="avatar1">&ndash;&gt;-->
+<!--    </div>-->
+
+    <div class="row1">
+        <div class="column1">
+            <h2>acebook</h2>
+        </div>
+        <div class="column1">
+            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="Avatar1" class="avatar1" width= 20%; height= 20%; align= right>
+        </div>
     </div>
 
-    <h1>Posts</h1>
+<!--    <h1>Posts</h1>-->
+    <h3>Posts</h3>
+
 
     <form action="#" th:action="@{/posts}" th:object="${post}" method="post">
         <p>Create Posts: <input type="text" id="content" th:field="*{content}" minlength="3"/></p>
