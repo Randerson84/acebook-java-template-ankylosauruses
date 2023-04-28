@@ -27,15 +27,6 @@ public class PostsTest {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
         faker = new Faker();
-    }
-
-    @After
-    public void tearDown() {
-        driver.close();
-    }
-
-    @Test
-    public void MinLength() {
         String username = faker.internet().emailAddress();
         driver.get("http://localhost:8080/users/new");
         driver.findElement(By.id("username")).sendKeys(username);
@@ -45,6 +36,15 @@ public class PostsTest {
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).sendKeys("Password098!");
         driver.findElement(By.id("submit")).click();
+    }
+
+    @After
+    public void tearDown() {
+        driver.close();
+    }
+
+    @Test
+    public void MinLength() {
         driver.get("http://localhost:8080/posts");
         driver.findElement(By.id("content")).sendKeys("123");
         driver.findElement(By.id("submit")).click();
@@ -52,6 +52,7 @@ public class PostsTest {
         List<WebElement> links = driver.findElements(By.tagName("li"));
         for (int i = 1; i < links.size(); i++)
         {
+            System.out.println(links.get(i));
             if (links.get(i).getText().equals("123")){postFound = true; break;}
         }
         Assert.assertEquals(true, postFound);
@@ -75,6 +76,17 @@ public class PostsTest {
             if (links.get(i).getText().equals("1")){postFound = true; break;}
         }
         Assert.assertEquals(false, postFound);
-
+    }
+    @Test
+    public void LikesIncrease(){
+        driver.get("http://localhost:8080/posts");
+        driver.findElement(By.id("content")).sendKeys("LikeTest");
+        driver.findElement(By.id("submit")).click();
+        driver.findElement(By.id("like")).click();
+        String likes = String.valueOf(driver.findElement(By.id("NoLikes")).getText());
+        Assert.assertEquals("1", likes);
+        driver.findElement(By.id("like")).click();
+        String likes2 = String.valueOf(driver.findElement(By.id("NoLikes")).getText());
+        Assert.assertEquals("2", likes2);
     }
 }
