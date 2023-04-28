@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+<p>profile page</p>
+
+<input type="label" id="stream" name="stream" th:value="${username}" />
+
+<p>Posts</p>
+<ul th:each="post: ${posts}">
+    <li th:text="${post.content}" />
+</ul>
+
+<p>Friends</p>
+<ul th:each="friend: ${friendsList}">
+    <li th:text="${friend.getUsername()}" />
+</ul>
+
+<!--<img src="./Homer.png"/>-->
+<!--<img th:src="@{/src/main/resources/images/Homer.png}"/>-->
+<!--<img th:src="@{/images/Homer.png}"/>-->
+<!--<img src="/images/Homer.png" />-->
+<!--<img th:src="@{images/Homer.png}" >-->
+<!--<img src="Homer.png"/>-->
+<!--<img src="/images/Homer.png" width="1000" th:src="@{images/Homer.png}"/>-->
+<!--<img src="/Homer.jpeg"/>-->
+<!--<img th:src="@{/src/main/resources/images/Homer.jpeg}"/>-->
+<!--<img th:src="@{/images/Homer.jpeg}"/>-->
+<!--<img src="/images/Homer.jpeg" />-->
+<!--<img th:src="@{images/Homer.jpeg}" >-->
+<!--<img src="Homer.jpeg"/>-->
+<!--<img src="/images/Homer.jpeg" width="1000" th:src="@{images/Homer.jpeg}"/>-->
+<!--<img src="Homer.jpeg"/>-->
+<!--<img src="../Homer.png" width="210" height="241"/>-->
+<!--<img th:src="@{images/Homer.png}"/>-->
+<!--<img src="/Homer" />-->
+<!--<img th:src="@{/Homer}" />-->
+<!--<img src="images/"+ />-->
+<img th:src="${profileString}"/>
+
+
+
+<!--<img src="https://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png"/>-->
+
+</body>
+</html>

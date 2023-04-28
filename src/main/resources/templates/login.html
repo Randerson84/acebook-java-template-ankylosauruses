@@ -42,7 +42,7 @@
                     {8,16} -> The total length should be greater than or equal to 8 and less or equal to 16.
 -->
 
-                <button type="submit" id="submit">Login</button>
+                <button type="submit" id="submit" onclick="setCookie(username.valueOf());">Login</button>
                 <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label>
@@ -53,9 +53,11 @@
                 <span class="psw">Forgot <a href="/forgotPassword">password?</a></span>
 <!--                <span class="psw">Forgot <a th:href="/forgotPassword">password?</a></span>-->
             </div>
-
         </form>
     <p th:if="${loginError}" class="error">Incorrect user email address or password has been entered!</p>
     </div>
+    <script>
+      function setCookie(username){document.cookie = "cuid="+ document.getElementById("username").value+";"};
+    </script>
 </body>
 </html>

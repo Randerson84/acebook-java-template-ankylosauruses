@@ -17,7 +17,9 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
+    private Long user_id;
     private Integer likes;
+
 
     public Post() {}
 
@@ -26,6 +28,7 @@ public class Post {
     }
     public String getContent() { return this.content; }
     public void setContent(String content) { this.content = content; }
+    public void setUID(Long user_id) { this.user_id = user_id; }
 
     public Integer getLikes() {return this.likes;}
 
