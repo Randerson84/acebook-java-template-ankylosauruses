@@ -22,13 +22,6 @@ public class LogoutTest {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
         faker = new Faker();
-    }
-    @After
-    public void tearDown() {
-        driver.close();
-    }
-    @Test
-    public void successfulLogoutRedirectToLoginPage() {
         String username = faker.internet().emailAddress();
         driver.get("http://localhost:8080/users/new");
         driver.findElement(By.id("username")).sendKeys(username);
@@ -38,6 +31,13 @@ public class LogoutTest {
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).sendKeys("Password098!");
         driver.findElement(By.id("submit")).click();
+    }
+    @After
+    public void tearDown() {
+        driver.close();
+    }
+    @Test
+    public void successfulLogoutRedirectToLoginPage() {
         driver.get("http://localhost:8080/logout");
         driver.findElement(By.id("logout")).click();
         String title = driver.getTitle();
