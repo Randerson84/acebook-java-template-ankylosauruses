@@ -6,7 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
 
+import com.makersacademy.acebook.repository.UserRepository;
 import lombok.Data;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import static java.lang.Boolean.TRUE;
 
@@ -45,6 +47,7 @@ public class User {
     public String getPassword() { return this.password; }
     public void setUsername(String username) { this.username = username; }
     public void setPassword(String password) { this.password = password; }
+
     public void setId(long id){this.id = id;}
 
     public String getProfile_picture() {
@@ -58,4 +61,30 @@ public class User {
     public Long getId(){return id;}
     public String getFriendsList() {return friends_list;}
     public void setFriendsList(String friends_list) {this.friends_list = friends_list;}
+
+
+//
+//    public void updateResetPasswordToken(String token, String email) throws UsernameNotFoundException {
+//        User user = UserRepository.find;
+//        if (customer != null) {
+//            customer.setResetPasswordToken(token);
+//            customerRepo.save(customer);
+//        } else {
+//            throw new CustomerNotFoundException("Could not find any customer with the email " + email);
+//        }
+//    }
+//
+//    public Customer getByResetPasswordToken(String token) {
+//        return customerRepo.findByResetPasswordToken(token);
+//    }
+//
+//    public void updatePassword(Customer customer, String newPassword) {
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String encodedPassword = passwordEncoder.encode(newPassword);
+//        customer.setPassword(encodedPassword);
+//
+//        customer.setResetPasswordToken(null);
+//        customerRepo.save(customer);
+//    }
+
 }

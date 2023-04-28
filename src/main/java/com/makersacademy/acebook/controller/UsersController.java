@@ -7,6 +7,7 @@ import com.makersacademy.acebook.repository.AuthoritiesRepository;
 import com.makersacademy.acebook.repository.PostRepository;
 import com.makersacademy.acebook.repository.UserRepository;
 import org.flywaydb.core.internal.util.TimeFormat;
+import org.apache.catalina.filters.ExpiresFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +40,16 @@ public class UsersController {
     public String signup(Model model) {
         model.addAttribute("user", new User());
         return "users/new";
+    }
+
+    @GetMapping("/terms")
+    public String terms(Model model) {
+        return "/terms";
+    }
+
+    @GetMapping("/forgotPassword")
+    public String forgotPassword(Model model) {
+        return "/forgotPassword";
     }
 
     @PostMapping("/users")

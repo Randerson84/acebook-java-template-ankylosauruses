@@ -8,14 +8,12 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
-public class SignUpTest {
-
+public class LogoutTest {
     WebDriver driver;
     Faker faker;
 
@@ -24,20 +22,25 @@ public class SignUpTest {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
         faker = new Faker();
+        String username = faker.internet().emailAddress();
+        driver.get("http://localhost:8080/users/new");
+        driver.findElement(By.id("username")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys("Password098!");
+        driver.findElement(By.id("submit")).click();
+        driver.get("http://localhost:8080/login");
+        driver.findElement(By.id("username")).sendKeys(username);
+        driver.findElement(By.id("password")).sendKeys("Password098!");
+        driver.findElement(By.id("submit")).click();
     }
-
     @After
     public void tearDown() {
         driver.close();
     }
-
     @Test
-    public void successfulSignUpRedirectsToSignIn() {
-        driver.get("http://localhost:8080/users/new");
-        driver.findElement(By.id("username")).sendKeys(faker.internet().emailAddress());
-        driver.findElement(By.id("password")).sendKeys("Password098!");
-        driver.findElement(By.id("submit")).click();
+    public void successfulLogoutRedirectToLoginPage() {
+        driver.get("http://localhost:8080/logout");
+        driver.findElement(By.id("logout")).click();
         String title = driver.getTitle();
-        Assert.assertEquals("Please sign in", title);
+        Assert.assertEquals("Acebook Home Page", title);
     }
 }

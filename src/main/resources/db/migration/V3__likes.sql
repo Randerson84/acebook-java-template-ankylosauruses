@@ -1,0 +1,2 @@
+ALTER TABLE posts
+ADD likes INTEGER DEFAULT 0;

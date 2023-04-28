@@ -5,20 +5,59 @@
     <title>Please sign in</title>
 </head>
 <body>
-    <h1>Login page</h1>
-    <form th:action="@{/login}" method="post">
-        <label for="username">Username</label>:
-        <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
-        <label for="password">Password</label>:
-        <input type="password" id="password" name="password" /> <br />
+    <div class="topnav">
+        <a class="active" href="/homepage">Home</a>
+<!--        <a href="/posts">Posts</a>-->
+<!--        <a href="/logout">Log Out</a>-->
+    </div>
 
-        <input type="submit" value="Log in" onclick="setCookie(username.valueOf());"/>
-    </form>
-    <p th:if="${loginError}" class="error">Wrong user or password</p>
+    <br>
+    <h1>Sign in to Acebook</h1>
 
-<script>
-    function setCookie(username){document.cookie = "cuid="+ document.getElementById("username").value+";"};
+    <div class="container" >
+        <form th:action="@{/login}" method="post">
+<!--            <div class="imgcontainer">-->
+<!--                <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="Avatar" class="avatar">-->
+<!--                &lt;!&ndash;height="60" width="60" &ndash;&gt;-->
+<!--            </div>-->
+            <div class="container">
+<!--                <label for="username"><b>Username</b></label>:-->
+<!--                <input type="text" placeholder="Enter Username" id="username" autofocus ="autofocus" name="username" required/> <br />-->
 
-</script>
+                <label for="username"><b>Email Address</b></label>:
+                <input type="email" minlength="3" maxlength="30" placeholder="Enter Email Address in the format default@example.com" id="username"
+                       autofocus ="autofocus" name="username" required/> <br />
+<!--                value="default@example.com"-->
+
+                <label for="password"><b>Password</b></label>:
+                <input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$"
+                       placeholder="Must contain at least one: number, special character, uppercase and lowercase letter, and be at least 8 characters long" id="password" name="password" required /> <br />
+
+<!--                minlength="8" maxlength="16"
+                    Password Criteria:
+                    (?=.*[a-z]) - At least one lowercase letter(a - z).
+                    (?=.*[A-Z]) - At least one uppercase letter(A - Z).
+                    (?=.*[0-9]) - At least one numeric value(0-9).
+                    (?=.*[!@#$%^&*_=+-]) - At least one special symbol(!@#$%^&*=+-_)
+                    {8,16} -> The total length should be greater than or equal to 8 and less or equal to 16.
+-->
+
+                <button type="submit" id="submit" onclick="setCookie(username.valueOf());">Login</button>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" class="cancel_btn" onclick="window.location='/login'">Cancel</button>
+                <span class="psw">Forgot <a href="/forgotPassword">password?</a></span>
+<!--                <span class="psw">Forgot <a th:href="/forgotPassword">password?</a></span>-->
+            </div>
+        </form>
+    <p th:if="${loginError}" class="error">Incorrect user email address or password has been entered!</p>
+    </div>
+    <script>
+      function setCookie(username){document.cookie = "cuid="+ document.getElementById("username").value+";"};
+    </script>
 </body>
 </html>

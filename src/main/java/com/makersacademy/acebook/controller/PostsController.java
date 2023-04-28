@@ -35,10 +35,20 @@ public class PostsController {
     }
 
     @PostMapping("/posts")
+
     public RedirectView create(@ModelAttribute Post post, @CookieValue("cuid") String uid) {
         User user = new User();
         for (User u: userRepo.findAll()){if (u.getUsername().equals(uid)){user = u;break;}}
         post.setUID(user.getId());
+        post.setLikes(0);
+        repository.save(post);
+        return new RedirectView("/posts");
+    }
+    @PostMapping("/posts/{id}/likes")
+    public RedirectView increment(@PathVariable("id") Long id) {
+        Post post = repository.findById(id).get();
+        Integer likes = post.getLikes();
+        post.setLikes(likes+1);
         repository.save(post);
         return new RedirectView("/posts");
     }
