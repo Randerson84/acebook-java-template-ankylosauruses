@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 </head>
 <body>
-<div class="topnav">
-            <a href="/posts">Posts</a>
+<div class="navbar">
+            <a href="/posts" id="posts">Posts</a>
             <a class="active" href="/users/${id}">Profile</a>
-            <a href="/logout">Log Out</a>
+            <a href="/logout" id="logout">Log Out</a>
         <div sec:authorize="isAuthenticated()" style="text-align: right; padding: 5px; color: white; padding-top: 15px; padding-right: 30px;">
             Signed in as: <span sec:authentication="name"></span>
         </div>
