@@ -5,7 +5,6 @@
     <title>Profile</title>
     <link rel="stylesheet" th:href="@{/main.css}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
-
 </head>
 <body>
 <div class="topnav">
@@ -26,15 +25,16 @@
 
 <input type="hidden" id="stream" name="stream" th:value="${username}" />
 
+
 <!--<p>Posts</p>-->
 <div class="wrapper">
-    <ul th:each="post: ${posts}">
-        <form action="#" th:action="@{'/posts/'+${post.id}+'/likes'}" method="post">
-            <li th:text="${post.content}" />
-            <button type="submit" id="like" class="button button-like"><i class="fa fa-heart"></i></button>
-            <i id="NoLikes" th:text="${post.likes}"/>
-        </form>
-    </ul>
+  <ul th:each="post: ${posts}">
+    <form action="#" th:action="@{'/users/'+${post.id}+'/likes'}" method="post">
+        <li th:text="${post.content}" />
+        <button type="submit" id="like" class="button button-like"><i class="fa fa-heart"></i></button>
+        <i id="NoLikes" th:text="${post.likes}"/>
+    </form>
+  </ul>
 </div>
 
 <p>Friends</p>
