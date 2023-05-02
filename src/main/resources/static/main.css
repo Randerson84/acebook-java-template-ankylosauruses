@@ -5,6 +5,11 @@
         text-align: left;
         margin-bottom: 0.5rem;
 }
+.main {
+  padding: 16px;
+  margin-top: 30px;
+  height: 1500px; /* Used in this example to enable scrolling */
+}
 form{
     position:relative;
     width:50%;
@@ -16,15 +21,18 @@ p.error {
     font-weight: bold;
     color: red;
 }
-.topnav {
+.navbar {
   overflow: hidden;
   background-color: #333;
-    position: fixed;
-    top: 0;
-    width: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 500;
 }
-.topnav a {
+
+.navbar a {
   float: left;
+  display: block;
   color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
@@ -32,20 +40,14 @@ p.error {
   font-size: 17px;
 }
 
-.topnav a:hover {
-  background-color: #ddd;
+.navbar a:hover {
+  background: #ddd;
   color: black;
 }
-
-.topnav a.active {
-  background-color: #4169e1;
-  color: white;
+.navbar a.active {
+          background-color: #4169e1;
+          color: white;
 }
-
-.topnav-right {
-  float: right;
-}
-
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -82,12 +84,10 @@ h3 {
     color: black;
     font-family: Times New Roman;
     font-size: 160%;
-    /* border: 2px solid powderblue; */
     padding: 10px;
     margin: 10px;
   }
 
-  /*form {border: 3px solid #f1f1f1;}*/
 
   input[type=text], input[type=email], input[type=password] {
     width: 101%;
@@ -136,57 +136,13 @@ h3 {
 
   .imgcontainer1 {
       text-align: right;
-      /*  float: top;
-      padding: 20px 20px 20px 20px ; */
     }
         img.avatar1 {
-        /* float: right; */
         width: 10%;
         height: 10%;
         border-radius: 20%;
         padding: 20px 20px 20px 20px ;
       }
-
-
-  /*  ul.li {
-      display: block;
-      list-style-type: disc;
-      margin-top: 1em;
-      margin-bottom: 1 em;
-      margin-left: 0;
-      margin-right: 0;
-      padding-left: 40px;
-    }
-
- /* .wrapper {
-        text-align: center;
-        }
-
-
-  .wrapper ul {
-     list-style-type:none;
-     margin: 5;
-     padding: 5;
-     zoom:1;
-           }
-
- .wrapper li {
-    padding:0.25em 0.5em 0.25em 1em;
-           }
-
- .wrapper li:after {
-      content: "\a";
-      white-space: pre;
-        }
-
-.wrapper form{
-    position:relative;
-    width:100%;
-    align:left;
-    margin-left:5%;
-    margin-right:25%;
-    border: 5px solid yellow;
- }*/
 .wrapper button{
     color: #ff0000;
     background: none;
@@ -195,11 +151,7 @@ h3 {
     text-align: left;
     align:left;
     padding: 0.5rem;
-}/*
-.wrapper button:active{
-    color: #fff;
-    transform: scale(1.2);
-}*/
+}
 .row {
   background-color: #CAA347;
   color: #fff;
@@ -259,61 +211,3 @@ h3 {
   display: table;
   clear: both;
 }
-
-
-
-
- /* .imgcontainer {
-    text-align: center;
-    margin: 10px 0 5px 0;
-  }
-
-
-
-  .container {
-    padding: 16px;
-  }
-
-
-
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
-
-form {border: 3px solid #f1f1f1;}
-
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
-}
-*/
-
-
-
-/*
- .root{
-     -fx-background-color: linear-gradient(#383838, #838383);
-     -fx-font-size: 11pt;
- }
-
- .label{
-     -fx-text-fill: #e8e8e8;
-  }
-
- .button{
--fx-background-color: linear-gradient(#dc9556, #ab4642);
--fx-background-radius: 100;
- }
-
- .text-area{
-     -fx-background-color: white;
-     -fx-background-radius: 0;
-  }
-  */
-

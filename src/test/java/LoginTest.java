@@ -23,13 +23,6 @@ public class LoginTest {
         System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
         driver = new ChromeDriver();
         faker = new Faker();
-    }
-    @After
-    public void tearDown() {
-        driver.close();
-    }
-    @Test
-    public void successfulLoginRedirectToPostsPage() {
         String username = faker.internet().emailAddress();
         driver.get("http://localhost:8080/users/new");
         driver.findElement(By.id("username")).sendKeys(username);
@@ -38,8 +31,21 @@ public class LoginTest {
         driver.get("http://localhost:8080/login");
         driver.findElement(By.id("username")).sendKeys(username);
         driver.findElement(By.id("password")).sendKeys("Password098!");
+    }
+    @After
+    public void tearDown() {
+        driver.close();
+    }
+    @Test
+    public void successfulLoginRedirectToPostsPage() {
         driver.findElement(By.id("submit")).click();
         String title = driver.getTitle();
         Assert.assertEquals("Acebook", title);
+    }
+    @Test
+    public void successfulRedirectToHomePage() {
+        driver.findElement(By.id("home")).click();
+        String title = driver.getTitle();
+        Assert.assertEquals("Acebook Home Page", title);
     }
 }

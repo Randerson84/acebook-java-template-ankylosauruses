@@ -9,24 +9,18 @@
     </head>
     <body>
 
-    <div class="topnav">
+    <div class="navbar">
         <a class="active" href="/posts">Posts</a>
 <!--        <a href="/users/my_profile">Profile</a>-->
-        <a th:href="${user}">Profile</a>
+        <a th:href="${user}" id="profile">Profile</a>
 <!--        <a href="@{/users/my_profile}" method="get">Profile</a>-->
 <!--        <a action="#" th:action="@{/users/my_profile}" method="get">Profile</a>-->
-        <a href="/logout">Log Out</a>
+        <a href="/logout" id="logout">Log Out</a>
         <div sec:authorize="isAuthenticated()" style="text-align: right; padding: 5px; color: white; padding-top: 15px; padding-right: 30px;">
             Signed in as: <span sec:authentication="name"></span>
         </div>
     </div>
 
-<!--    <br>-->
-
-<!--    <div class="imgcontainer1">-->
-<!--        <h2>acebook</h2>-->
-<!--&lt;!&ndash;        <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" alt="Avatar1" class="avatar1">&ndash;&gt;-->
-<!--    </div>-->
 
     <div class="row1">
         <div class="column1">

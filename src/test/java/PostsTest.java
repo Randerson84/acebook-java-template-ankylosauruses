@@ -89,4 +89,16 @@ public class PostsTest {
         String likes2 = String.valueOf(driver.findElement(By.id("NoLikes")).getText());
         Assert.assertEquals("2", likes2);
     }
+    @Test
+    public void successfulRedirectToLogoutPage() {
+        driver.findElement(By.id("logout")).click();
+        String title = driver.getTitle();
+        Assert.assertEquals("Logout", title);
+    }
+    @Test
+    public void successfulRedirectToProfilePage() {
+        driver.findElement(By.id("profile")).click();
+        String title = driver.getTitle();
+        Assert.assertEquals("Profile", title);
+    }
 }
