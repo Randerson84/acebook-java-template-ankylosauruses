@@ -62,6 +62,13 @@ public class User {
     public String getFriendsList() {return friends_list;}
     public void setFriendsList(String friends_list) {this.friends_list = friends_list;}
 
+    public static User findUser(String username, UserRepository userRepo){
+        User user = new User();
+        for (User u: userRepo.findAll()){if (u.getUsername().equals(username)){user = u;break;}
+        }
+        return user;
+    }
+
 
 //
 //    public void updateResetPasswordToken(String token, String email) throws UsernameNotFoundException {
