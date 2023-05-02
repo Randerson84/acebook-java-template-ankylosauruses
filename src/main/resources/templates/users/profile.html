@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Profile</title>
     <link rel="stylesheet" href="/main.css" th:href="@{/main.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 </head>
 <body>
 <div class="topnav">
@@ -20,7 +21,11 @@
 
 <p>Posts</p>
 <ul th:each="post: ${posts}">
-    <li th:text="${post.content}" />
+    <form action="#" th:action="@{'/users/'+${post.id}+'/likes'}" method="post">
+        <li th:text="${post.content}" />
+        <button type="submit" id="like" class="button button-like"><i class="fa fa-heart"></i></button>
+        <i id="NoLikes" th:text="${post.likes}"/>
+    </form>
 </ul>
 
 <p>Friends</p>
