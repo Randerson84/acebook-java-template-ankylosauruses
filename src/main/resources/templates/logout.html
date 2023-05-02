@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5" >
 <head>
     <meta charset="UTF-8">
     <title>Logout Page</title>
@@ -9,7 +10,11 @@
 <div class="topnav">
 <!--    <a href="/homepage">Home</a>-->
     <a href="/posts">Posts</a>
+    <a th:href="${user}">Profile</a>
     <a class="active" href="/logout">Log Out</a>
+    <div sec:authorize="isAuthenticated()" style="text-align: right; padding: 5px; color: white; padding-top: 15px; padding-right: 30px;">
+        Signed in as: <span sec:authentication="name"></span>
+    </div>
 </div>
 
     <h1>Log out of your account?</h1>

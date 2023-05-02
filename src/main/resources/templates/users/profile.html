@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <link rel="stylesheet" href="/main.css" th:href="@{/main.css}" />
 </head>
 <body>
-<p>profile page</p>
+<div class="topnav">
+            <a href="/posts">Posts</a>
+            <a class="active" href="/users/${id}">Profile</a>
+            <a href="/logout">Log Out</a>
+        <div sec:authorize="isAuthenticated()" style="text-align: right; padding: 5px; color: white; padding-top: 15px; padding-right: 30px;">
+            Signed in as: <span sec:authentication="name"></span>
+        </div>
+</div>
+<h1>Profile</h1>
 
-<input type="label" id="stream" name="stream" th:value="${username}" />
+<input type="hidden" id="stream" name="stream" th:value="${username}" />
 
 <p>Posts</p>
 <ul th:each="post: ${posts}">

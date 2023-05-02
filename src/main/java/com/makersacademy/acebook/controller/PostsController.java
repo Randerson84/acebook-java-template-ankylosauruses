@@ -24,18 +24,20 @@ public class PostsController {
     UserRepository userRepo;
 
     @GetMapping("/posts")
-    public String index(Model model) {
+    public String index(Model model, @CookieValue("cuid") String uid) {
         Iterable<Post> posts = repository.findAll();
         List<Post> reverseOrderPost = StreamSupport.stream(posts.spliterator(), false)
                 .sorted(Comparator.comparing(Post::getId).reversed())
                 .collect(Collectors.toList());
         model.addAttribute("posts", reverseOrderPost);
         model.addAttribute("post", new Post());
+        User user = User.findUser(uid, userRepo);
+//        for (User u: userRepo.findAll()){if (u.getUsername().equals(uid)){user = u;break;}}
+        model.addAttribute("user", "/users/"+user.getId());
         return "posts/index";
     }
 
     @PostMapping("/posts")
-
     public RedirectView create(@ModelAttribute Post post, @CookieValue("cuid") String uid) {
         User user = new User();
         for (User u: userRepo.findAll()){if (u.getUsername().equals(uid)){user = u;break;}}

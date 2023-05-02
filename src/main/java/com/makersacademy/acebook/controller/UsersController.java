@@ -11,10 +11,7 @@ import org.apache.catalina.filters.ExpiresFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -68,8 +65,11 @@ public class UsersController {
         userRepository.findAll().forEach(users::add);
         //create new user and populate by ID
         User user = new User();
-        for (User e :users) {
-                if (Long.toString(e.getId()).equals(id)){user = e;}}
+        for (User e : users) {
+            if (Long.toString(e.getId()).equals(id)) {
+                user = e;
+            }
+        }
         //add attributes
         model.addAttribute("username", id);
         model.addAttribute("user", user);
@@ -77,18 +77,41 @@ public class UsersController {
         Iterable<Post> posts = repository.findAll();
         //create list of user posts and populate
         ArrayList<Post> userPosts = new ArrayList<>();
-        for (Post post : posts){if (post.getUser_id().toString().equals(id)){userPosts.add(post);}}
+        for (Post post : posts) {
+            if (post.getUser_id().toString().equals(id)) {
+                userPosts.add(post);
+            }
+        }
+        //reverse the order of posts on profile page
+        List<Post> reverseOrderPost = StreamSupport.stream(userPosts.spliterator(), false)
+                .sorted(Comparator.comparing(Post::getId).reversed())
+                .collect(Collectors.toList());
+//        System.out.println(reverseOrderPost);
+        model.addAttribute("posts", reverseOrderPost);
+        model.addAttribute("post", new Post());
+
         //create friends arraylist of users
         ArrayList<User> friendsList = new ArrayList<>();
         //convert String friends list from user obj to list
         String[] friends = null;
-        if(user.getFriendsList() != null){friends = user.getFriendsList().split(",");
+        if (user.getFriendsList() != null) {
+            friends = user.getFriendsList().split(",");
             //for all users if their id is within friends list add them to friends array list
-            for (User u : userRepository.findAll()){if (Arrays.asList(friends).contains(u.getId().toString())){friendsList.add(u);}}}
+            for (User u : userRepository.findAll()) {
+                if (Arrays.asList(friends).contains(u.getId().toString())) {
+                    friendsList.add(u);
+                }
+            }
+        }
         //add friends list and posts attributes
         model.addAttribute("friendsList", friendsList);
-        model.addAttribute("posts", userPosts);
+//        model.addAttribute("posts", userPosts);
         model.addAttribute("profileString", user.getProfile_picture());
+        return "users/profile";
+    }
+
+    @GetMapping("/users/my_profile")
+    public String myProfile(@CookieValue("cuid") String uid) {
         return "users/profile";
     }
 }
