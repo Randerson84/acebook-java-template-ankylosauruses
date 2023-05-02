@@ -109,6 +109,15 @@ public class UsersController {
         model.addAttribute("profileString", user.getProfile_picture());
         return "users/profile";
     }
+    @PostMapping("/users/{id}/likes")
+    public RedirectView increment(@PathVariable("id") Long id) {
+        Post post = repository.findById(id).get();
+        Integer likes = post.getLikes();
+        post.setLikes(likes+1);
+        repository.save(post);
+        Long userID = post.getUser_id();
+        return new RedirectView("/users/"+ userID);
+    }
 
     @GetMapping("/users/my_profile")
     public String myProfile(@CookieValue("cuid") String uid) {
