@@ -47,7 +47,16 @@
                 <button type="submit" id="like" class="button button-like"><i class="fa fa-heart"></i></button>
                 <i id="NoLikes" th:text="${post.likes}"/>
             </form>
+            <form action="#" th:action="@{'/comments/'+${post.id}}" method="post">
+                <p>Add Comment: <input type="text" id="message" th:field="*{comment.message}" /></p>
+                <input type="submit" id="comment" value="Comment"/>
+            </form>
+            <ul th:each="comment: ${comments}">
+                <li th:if="${comment.postsid == post.id}" th:text="${comment.message}" />
+
+            </ul>
         </ul>
+
 
 
     </div>

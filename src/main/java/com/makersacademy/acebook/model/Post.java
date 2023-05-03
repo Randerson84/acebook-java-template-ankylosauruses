@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.GenerationType;
-
+import com.makersacademy.acebook.model.Comment;
 import lombok.Data;
+
+import java.util.ArrayList;
 
 @Data
 @Entity
@@ -19,6 +21,7 @@ public class Post {
     private String content;
     private Long user_id;
     private Integer likes;
+
 
 
     public Post() {}

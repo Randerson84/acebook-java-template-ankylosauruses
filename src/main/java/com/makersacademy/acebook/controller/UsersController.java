@@ -1,6 +1,7 @@
 package com.makersacademy.acebook.controller;
-
+import com.makersacademy.acebook.repository.CommentRepository;
 import com.makersacademy.acebook.model.Authority;
+import com.makersacademy.acebook.model.Comment;
 import com.makersacademy.acebook.model.Post;
 import com.makersacademy.acebook.model.User;
 import com.makersacademy.acebook.repository.AuthoritiesRepository;
@@ -31,6 +32,9 @@ public class UsersController {
 
     @Autowired
     PostRepository repository;
+
+    @Autowired
+    CommentRepository commentRepository;
     private String id;
 
     @GetMapping("/users/new")
@@ -89,7 +93,8 @@ public class UsersController {
 //        System.out.println(reverseOrderPost);
         model.addAttribute("posts", reverseOrderPost);
         model.addAttribute("post", new Post());
-
+        model.addAttribute("comment", new Comment());
+        model.addAttribute("comments", this.commentRepository.findAll());
         //create friends arraylist of users
         ArrayList<User> friendsList = new ArrayList<>();
         //convert String friends list from user obj to list

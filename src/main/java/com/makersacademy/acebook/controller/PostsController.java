@@ -1,7 +1,8 @@
 package com.makersacademy.acebook.controller;
-
+import com.makersacademy.acebook.model.Comment;
 import com.makersacademy.acebook.model.Post;
 import com.makersacademy.acebook.model.User;
+import com.makersacademy.acebook.repository.CommentRepository;
 import com.makersacademy.acebook.repository.PostRepository;
 import com.makersacademy.acebook.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class PostsController {
     @Autowired
     UserRepository userRepo;
 
+    @Autowired
+    CommentRepository commentRepository;
     @GetMapping("/posts")
     public String index(Model model, @CookieValue("cuid") String uid) {
         Iterable<Post> posts = repository.findAll();
@@ -31,6 +34,8 @@ public class PostsController {
                 .collect(Collectors.toList());
         model.addAttribute("posts", reverseOrderPost);
         model.addAttribute("post", new Post());
+        model.addAttribute("comment", new Comment());
+        model.addAttribute("comments", this.commentRepository.findAll());
         User user = User.findUser(uid, userRepo);
 //        for (User u: userRepo.findAll()){if (u.getUsername().equals(uid)){user = u;break;}}
         model.addAttribute("user", "/users/"+user.getId());
