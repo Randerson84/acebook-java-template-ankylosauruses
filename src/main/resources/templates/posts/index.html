@@ -48,13 +48,16 @@
                 <i id="NoLikes" th:text="${post.likes}"/>
             </form>
             <form action="#" th:action="@{'/comments/'+${post.id}}" method="post">
-                <p>Add Comment: <input type="text" id="message" th:field="*{comment.message}" /></p>
-                <input type="submit" id="comment" value="Comment"/>
+                <p style = "font-size:17px">Comment here: <input type="text" id="message" th:field="*{comment.message}" style="width: 300px"/></p>
+                <input type="submit" id="comment" float="right" value="Comment"/>
+                <ul th:each="comment: ${comments}" style="font-size: 15px; color: green;">
+                    <li th:if="${comment.postsid == post.id}" th:text="${comment.message}" />
+                </ul>
             </form>
-            <ul th:each="comment: ${comments}">
-                <li th:if="${comment.postsid == post.id}" th:text="${comment.message}" />
+<!--            <ul th:each="comment: ${comments}" >-->
+<!--                <li th:if="${comment.postsid == post.id}" th:text="${comment.message}" />-->
 
-            </ul>
+<!--            </ul>-->
         </ul>
 
 
