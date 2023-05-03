@@ -36,10 +36,13 @@
         <li th:text="${post.content}" />
         <button type="submit" id="like" class="button button-like"><i class="fa fa-heart"></i></button>
         <i id="NoLikes" th:text="${post.likes}"/>
+        <ul th:each="comment: ${comments}" style="font-size: 15px; color: green;">
+            <li th:if="${comment.postsid == post.id}" th:text="${comment.message}" />
+        </ul>
     </form>
-      <ul th:each="comment: ${comments}">
-          <li th:if="${comment.postsid == post.id}" th:text="${comment.message}" />
-      </ul>
+<!--      <ul th:each="comment: ${comments}">-->
+<!--          <li th:if="${comment.postsid == post.id}" th:text="${comment.message}" />-->
+<!--      </ul>-->
   </ul>
 </div>
 
